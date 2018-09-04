@@ -6,7 +6,6 @@ matrix:
   # Building APK/IPA takes a long time; do not wait for them to finish.
   allow_failures:
     - env: JOB=APK
-    - env: JOB=IPA
 
   include:
     # Runs unit tests without emulators.
@@ -63,21 +62,6 @@ matrix:
         - git clone https://github.com/flutter/flutter.git -b alpha --depth 1
       script:
         - ./flutter/bin/flutter -v build apk
-
-    # Builds an IPA.
-    - env: JOB=IPA
-      os: osx
-      language: generic
-      osx_image: xcode8.3
-      before_script:
-        - pip install six
-        - brew update
-        - brew install --HEAD libimobiledevice
-        - brew install ideviceinstaller
-        - brew install ios-deploy
-        - git clone https://github.com/flutter/flutter.git -b alpha --depth 1
-      script:
-        - ./flutter/bin/flutter -v build ios --no-codesign
 
 cache:
   directories:
