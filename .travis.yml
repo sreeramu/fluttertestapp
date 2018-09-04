@@ -62,7 +62,10 @@ matrix:
         - git clone https://github.com/flutter/flutter.git -b beta --depth 1
       script:
         - ./flutter/bin/flutter -v build apk
-
+deploy:
+  - if [ "$TRAVIS_BRANCH" == "master" ]; then
+    ./deploy.sh
+  fi
 cache:
   directories:
     - $HOME/.pub-cache
