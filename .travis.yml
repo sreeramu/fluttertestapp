@@ -4,8 +4,8 @@ matrix:
   fast_finish: true
 
   # Building APK/IPA takes a long time; do not wait for them to finish.
-  allow_failures:
-    - env: JOB=APK
+  #allow_failures:
+  #  - env: JOB=APK
 
   include:
     # Runs unit tests without emulators.
@@ -63,9 +63,9 @@ matrix:
       script:
         - ./flutter/bin/flutter -v build apk
   deploy:
-    - if [ "$TRAVIS_BRANCH" == "master" ]; then
+    #- if [ "$TRAVIS_BRANCH" == "master" ]; then
         ./deploy.sh
-      fi
+    #fi
 cache:
   directories:
     - $HOME/.pub-cache
